@@ -22,25 +22,6 @@ client_id = config_settings[2][10:].rstrip()
 client_secret = config_settings[3][14:].rstrip()
 subreddit = config_settings[4][10:].rstrip()
 
-# open the content.txt file as read-only
-content_file = open('content.txt', 'r')
-
-# bring all of the lines from the content file into the content variable
-content = content_file.readlines()
-
-# if configured correctly, the title will be the first line in the program
-submission_title = content[0]
-
-submission_body = ''
-
-# and the subsequent lines will be the body of the submission
-for line in content:
-	# skip the title line
-	if line == submission_title:
-		continue
-
-	submission_body += line.rstrip() + '\n'
-
 try:
 	# login to reddit...
 	reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, password=password, username=username,
@@ -48,8 +29,20 @@ try:
 
 	# create an instance of the subreddit class and submit the post!
 	target_subreddit = reddit.subreddit(subreddit)
-	target_subreddit.submit(title=submission_title, selftext=submission_body, url=None, resubmit=True,
-	                        send_replies=True)
+
+	postPath = 'C:/Users/giovi/Desktop/reddit-easy-post-1.0/post'
+	title_file = open(postPath+'/title.txt', 'r')
+	title = title_file.read()
+	title_file.close()
+	pictureList = [{"image_path": postPath+'/imgs/1.jpg'},{"image_path":postPath+'/imgs/2.jpg'},{"image_path":postPath+'/imgs/3.jpg'},]
+
+	submission = target_subreddit.submit_gallery(title, pictureList)
+	
+	comment_file = open(postPath+'/reply.txt', 'r')
+	comment = comment_file.read()
+	comment_file.close()
+
+	submission.reply(comment)
 
 	# output to the logfile
 	logging.info('Successful post to /r/{}'.format(subreddit))
