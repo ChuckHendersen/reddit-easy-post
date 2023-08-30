@@ -1,5 +1,6 @@
 import praw
 import logging
+from test_discord import DiscordBot
 
 logging.basicConfig(filename='reddit.log',level=logging.INFO,
                     format='%(asctime)s %(levelname)s : %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
@@ -37,7 +38,7 @@ try:
 	pictureList = [{"image_path": postPath+'/imgs/1.jpg'},{"image_path":postPath+'/imgs/2.jpg'},{"image_path":postPath+'/imgs/3.jpg'},]
 
 	submission = target_subreddit.submit_gallery(title, pictureList)
-	
+	post = submission
 	comment_file = open(postPath+'/reply.txt', 'r')
 	comment = comment_file.read()
 	comment_file.close()
@@ -46,6 +47,9 @@ try:
 
 	# output to the logfile
 	logging.info('Successful post to /r/{}'.format(subreddit))
+
+	client = DiscordBot('%', "@here upvote please-> https://www.reddit.com"+post.permalink)
+	client.run('your bot token')
 
 except Exception as err:
 	# if something went wrong with reddit, put the exception in the log file
