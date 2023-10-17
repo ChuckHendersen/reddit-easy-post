@@ -55,7 +55,7 @@ while(True):
         logging.info('Successful post to /r/{}'.format(subreddit))
 
         client = DiscordBot('%', "@here upvote please-> https://www.reddit.com"+post.permalink)
-        client.run('MTE0NjUxMjAzMDQ1NTU2MjM1MA.GqDzzj.l7GEPGh0379UWtZ5Zh3So_YnBNN-694BHPSWc8')
+        client.run(YOUR DISCORD TOKEN)
 
     except Exception as err:
         # if something went wrong with reddit, put the exception in the log file
