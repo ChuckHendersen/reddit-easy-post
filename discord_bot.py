@@ -4,9 +4,9 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
-server_id = 722878134785015879
-J6_channel_id = 763929883524857887
-general_channel_id = 722896764155330762
+server_id = 
+J6_channel_id = 
+general_channel_id = 
 
 class DiscordBot(commands.Bot):
     def __init__(self, command_prefix, message):
