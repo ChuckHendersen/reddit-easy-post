@@ -1,14 +1,14 @@
 import praw
-postPath = 'C:/Users/giovi/Desktop/reddit-easy-post-1.0/post'
+postPath = './post'
 comment_file = open(postPath+'/reply.txt', 'r')
 comment = comment_file.read()
 comment_file.close()
 print(comment)
 
-username=''
-password=''
-client_id=''
-client_secret=''
+username='Hendersen43'
+password='$Giovanni2001giovann'
+client_id='74x7OJLVhGIo1UM5rgx5Kg'
+client_secret='2J6ruXjuG9b3PqymBAPSRBPo2tnl7w'
 subreddit_name='FindAUnit'
 
 reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, password=password, username=username,
